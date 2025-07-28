@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+	
+	<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+	
+</head>
+<body>
+
+
+
+<div class="falling-petals"></div>
+
+<div class="light-effect" id="lightEffectContainer"></div>
+
+
+
+
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgm" src="music.mp3" loop></audio>
+
+  <!-- COVER PAGE -->
+<section id="cover" class="glow">
+  <div class="cover-wrapper">
+    <img src="cover.png" alt="Cover Image" class="cover-image glow" />
+    <button id="openBtn">BUKA</button>
+  </div>
+</section>
+
+  
+
+  <!-- MAIN CONTENT -->
+  <div id="main" class="hidden">
+
+    <!-- VIDEO SECTION -->
+    <section id="video" class="fade">
+      <video src="video.mp4" controls autoplay muted loop></video>
+    </section>
+
+<!-- INFO 1 -->
+<section id="info1" class="fade section-image">
+  <img src="info1.png" alt="Info 1" >
+</section>
+
+
+<!-- INFO 2 -->
+<section id="info2"  class="fade section-image">
+  <img src="info2.png" alt="Info 2">
+</section>
+
+    <!-- COUNTDOWN -->
+<!-- COUNTDOWN -->
+<section id="countdown" class="fade themed-section">
+  <h2>Detik Menuju Hari Bahagia Kami</h2>
+  <div class="countdown-single-box glow">
+    <span id="days">00</span> Hari &nbsp;&nbsp;
+    <span id="hours">00</span> Jam &nbsp;&nbsp;
+    <span id="minutes">00</span> Minit &nbsp;&nbsp;
+  </div>
+</section>
+
+
+
+
+<!-- INFO 3 -->
+<section id="info3"  class="fade section-image">
+  <img src="info3.png" alt="Info 3">
+</section>
+
+    <!-- WISH SECTION -->
+<section id="wish" class="fade themed-section">
+  <h2>Ucapan & Doa</h2>
+  <form id="wishForm">
+    <input type="text" id="nameInput" placeholder="Nama Anda" required><br>
+    <textarea id="wishInput" placeholder="Ucapan anda..." rows="4" required></textarea><br>
+    <button type="submit">Hantar</button>
+  </form>
+
+  <div id="wishScrollContainer" class="glow">
+    <div id="wishContainer"></div>
+  </div>
+</section>
+
+
+  <!-- THANK YOU -->
+<section id="thankyou"  class="fade section-image">
+  <img src="thankyou.png" alt="Thank You">
+</section>
+
+  <!-- CREDIT SECTION -->
+  <section id="credit">
+    <p>Direka oleh <strong>Syakilah Shafi’e</strong> © 2025</p>
+  </section>
+
+
+  </div>
+
+  <!-- POPUP SECTION -->
+  <div id="popup" class="hidden"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="hidden">
+  <div class="nav-container">
+    <div class="nav-button" onclick="showLocationPopup()">
+      <img src="icon-location.png" alt="Location" class="nav-icon" />
+      <span class="nav-label">Lokasi</span>
+    </div>
+    <div class="nav-button" onclick="scrollToSection('wish')">
+      <img src="icon-wish.png" alt="Wish" class="nav-icon" />
+      <span class="nav-label">Ucapan</span>
+    </div>
+    <div class="nav-button" onclick="showCalendarPopup()">
+      <img src="icon-calendar.png" alt="Calendar" class="nav-icon" />
+      <span class="nav-label">Kalender</span>
+    </div>
+    <div class="nav-button" onclick="showContactPopup()">
+      <img src="icon-contact.png" alt="Contact" class="nav-icon" />
+      <span class="nav-label">Hubungi</span>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+  <!-- SCRIPT -->
+  <script>
+    // Open Invitation
+document.getElementById('openBtn').addEventListener('click', () => {
+  document.getElementById('cover').style.display = 'none';
+  const main = document.getElementById('main');
+  main.classList.remove('hidden');
+  document.getElementById('navbar').classList.remove('hidden'); // Show nav bar
+  window.scrollTo(0, 0);
+  document.getElementById('bgm').play();
+});
+
+    // Fade-in on scroll
+    const faders = document.querySelectorAll(".fade");
+    const appearOptions = {
+      threshold: 0.3,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("appear");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Countdown
+  const countdownDate = new Date("2025-10-19T00:00:00").getTime();
+
+  const countdownFunction = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+
+    if (distance < 0) {
+      clearInterval(countdownFunction);
+      document.getElementById("days").innerText = "00";
+      document.getElementById("hours").innerText = "00";
+      document.getElementById("minutes").innerText = "00";
+    }
+  }, 1000);
+	
+
+
+ 
+    // Popup Functions
+    const popup = document.getElementById('popup');
+
+    function closePopupAfter(seconds = 8) {
+      setTimeout(() => {
+        popup.classList.add('hidden');
+        popup.innerHTML = '';
+      }, seconds * 1000);
+    }
+
+function showLocationPopup() {
+  popup.innerHTML = `
+    <button onclick="window.open('https://maps.google.com/maps/place//data=!4m2!3m1!1s0x31cdad3dffa1654d:0x4e87ff3c7b7b2eef?entry=s&sa=X&ved=1t:8290&hl=en-my&ictx=111', '_blank')">
+      Google Maps
+    </button>
+    <button onclick="window.open('https://waze.com/ul/hw280y59z0', '_blank')">
+      Waze
+    </button>
+  `;
+  popup.classList.remove('hidden');
+  closePopupAfter();
+}
+
+
+
+
+    function showCalendarPopup() {
+      popup.innerHTML = `
+        <a href="invite.ics" download><button>19 October 2025</button></a>
+      `;
+      popup.classList.remove('hidden');
+      closePopupAfter();
+    }
+
+    function showContactPopup() {
+      popup.innerHTML = `
+        <button onclick="window.open('https://wa.me/60193573755', '_blank')">Ibu</button>
+        <button onclick="window.open('https://wa.me/60193881086', '_blank')">Abang</button>
+        <button onclick="window.open('https://wa.me/60182983386', '_blank')">Adik</button>
+      `;
+      popup.classList.remove('hidden');
+      closePopupAfter();
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+	
+	function createPetal() {
+  const petal = document.createElement('div');
+  petal.classList.add('petal');
+
+  // Posisi rawak di atas skrin
+  petal.style.left = Math.random() * window.innerWidth + 'px';
+
+  // Saiz rawak
+  const size = 20 + Math.random() * 20;
+  petal.style.width = size + 'px';
+  petal.style.height = size + 'px';
+
+  // Durasi animasi rawak
+  petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+  document.querySelector('.falling-petals').appendChild(petal);
+
+  // Buang kelopak selepas animasi tamat
+  setTimeout(() => {
+    petal.remove();
+  }, 10000);
+}
+
+// Jatuhkan kelopak secara berkala
+setInterval(createPetal, 500); // setiap 0.5s
+
+	
+	const container = document.getElementById('lightEffectContainer');
+  for (let i = 0; i < 20; i++) {
+  const dot = document.createElement('span');
+  dot.style.top = Math.random() * 100 + '%';
+  dot.style.left = Math.random() * 100 + '%';
+  dot.style.animationDelay = Math.random() * 5 + 's'; // ✅ delay rawak
+  container.appendChild(dot);
+}
+
+	
+  </script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBwemNMd4_StsZM1Jvph78HrkxxJsEkuEg",
+    authDomain: "weddingsyuib-7a11f.firebaseapp.com",
+    projectId: "weddingsyuib-7a11f",
+    storageBucket: "weddingsyuib-7a11f.firebasestorage.app",
+    messagingSenderId: "259678055718",
+    appId: "1:259678055718:web:4c2cfe9414075f24bd65e7",
+    measurementId: "G-S0VJZ16M2T"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const form = document.getElementById("wishForm");
+  const nameInput = document.getElementById("nameInput");
+  const wishInput = document.getElementById("wishInput");
+  const wishContainer = document.getElementById("wishContainer");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const wish = wishInput.value.trim();
+
+    if (name && wish) {
+      push(ref(db, "wishes"), {
+        name,
+        wish,
+        timestamp: Date.now()
+      });
+
+      nameInput.value = "";
+      wishInput.value = "";
+    }
+  });
+
+  onValue(ref(db, "wishes"), (snapshot) => {
+    wishContainer.innerHTML = "";
+    const data = snapshot.val();
+
+    if (data) {
+      const wishes = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+      wishes.forEach(({ name, wish }) => {
+        const wishEl = document.createElement("div");
+        wishEl.className = "wish-box";
+        wishEl.innerHTML = `<strong>${name}</strong><p>${wish}</p>`;
+        wishContainer.appendChild(wishEl);
+      });
+    }
+  });
+</script>
+
+
+</body>
+</html>

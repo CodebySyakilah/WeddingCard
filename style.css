@@ -1,0 +1,522 @@
+/* --- General Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #e4eee5; /* NEW primary background */
+  color: #cad6c4;            /* NEW main text color */
+}
+
+
+/* --- Cover Section --- */
+#cover {
+  background-color: #e4eee5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cover-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+#openBtn {
+	font-family: 'Playfair Display', serif;
+  position: absolute;
+  bottom: 25%;
+  background-color: #cad6c4;
+  color: #293927;
+  font-weight: bold;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#openBtn:hover {
+  transform: scale(1.05);
+}
+
+/* --- Section Styling --- */
+section {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-in-out;
+}
+
+.fade.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-image {
+  background-color: #e4eee5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  margin: 20px 0;
+}
+
+.section-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Info Sections --- */
+.info-section {
+  padding: 0;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.info-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  max-height: 100vh;
+  object-fit: contain; /* Pastikan gambar muat dalam skrin tanpa crop */
+  margin-bottom: 20px;
+}
+
+
+/* --- Video --- */
+#video {
+  background-color: #e4eee5;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+#video video {
+  width: 100%;
+  height: auto;
+}
+
+/* --- Countdown Section --- */
+.themed-section {
+  background-color: #e4eee5;
+  color: #cad6c4;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#countdown h2 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 25px;
+  color: #293927; /* Main theme color */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #3b513b, #6b7d6b); /* Soft green gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+/* Countdown Single Box */
+.countdown-single-box {
+	font-family: 'Playfair Display', serif;
+  display: inline-block;
+  background-color: #3c4f36; /* darker green contrast */
+  color: #cad6c4;
+  padding: 15px 25px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+
+
+/* --- Wish Section --- */
+
+#wish h2 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 25px;
+  color: #293927; /* Main theme color */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #3b513b, #6b7d6b); /* Soft green gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+
+#wishForm {
+  margin-top: 20px;
+}
+
+#wishForm input,
+#wishForm textarea {
+	font-family: 'Playfair Display', serif;
+  width: 90%;
+  max-width: 400px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #cad6c4;
+  color: #293927;
+  border: 1px solid #bc9c22;
+  border-radius: 8px;
+}
+
+#wishForm button {
+	font-family: 'Playfair Display', serif;
+  padding: 10px 20px;
+  background-color: #cad6c4;
+  color: #293927;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#wishForm button:hover {
+  background-color: #aeb9aa;
+}
+
+.wish-message {
+  margin-top: 10px;
+  background-color: #3c4f36;
+  color: #cad6c4;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wish-name {
+	font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #cad6c4;
+}
+
+.wish-text {
+	font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #fffff; /* Warna tulisan wish */
+}
+
+#wishScrollContainer {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#wishScrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+#wishScrollContainer::-webkit-scrollbar-thumb {
+  background-color: #e5d4aa;
+  border-radius: 6px;
+}
+
+
+.wish-box {
+  padding: 1rem;
+  background: #293927;
+  border-radius: 10px; 
+  margin-bottom: 1rem;
+}
+
+/* --- Navigation --- */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.nav-container {
+  background-color: #293927;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  flex: 1;
+}
+
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 3px;
+}
+
+.nav-label {
+  font-size: 13px;
+  color: #cad6c4;
+}
+
+.nav-button:hover .nav-icon {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+/* --- Popup --- */
+#popup {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #293927;
+  color: #cad6c4;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  z-index: 1001;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  max-width: 300px;
+}
+
+#popup.hidden {
+  display: none;
+}
+
+#popup button {
+  padding: 10px 15px;
+  background-color: #4d654a;
+  color: #cad6c4;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#popup button:hover {
+  background-color: #1e291e;
+}
+
+/* --- Hidden Class --- */
+.hidden {
+  display: none;
+}
+
+.falling-petals {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.petal {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('kelopak.png');
+  background-size: cover;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.glow {
+  animation: glowPulse 2.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(188, 156, 34, 0.6)); /* soft gold glow */
+}
+
+@keyframes glowPulse {
+  from {
+    filter: drop-shadow(0 0 10px rgba(188, 156, 34, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(188, 156, 34, 0.9));
+  }
+}
+
+
+
+.light-effect {
+  position: fixed; /* ✅ Kekal di viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999; /* ✅ Pastikan berada atas semua content */
+  pointer-events: none;
+}
+
+
+.light-effect span {
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(white, rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  animation: blink 5s infinite ease-in-out;
+  opacity: 0.5;
+}
+
+@keyframes blink {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 0.7;
+  }
+}
+
+
+.flicker {
+  animation: candle 1.5s infinite;
+  color: #fff8e1;
+  text-shadow: 0 0 8px #ffd;
+}
+
+@keyframes candle {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.8; }
+  55% { opacity: 0.9; }
+  70% { opacity: 0.7; }
+}
+
+.sparkle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(#fff, transparent);
+  border-radius: 50%;
+  animation: sparkle 2s infinite alternate ease-in-out;
+  opacity: 0.6;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0.8); opacity: 0.2; }
+  100% { transform: scale(1.4); opacity: 0.8; }
+}
+
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  #info1, #info2, #info3, #thankyou {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+  }
+
+  section {
+	background-color: #293927;
+    padding: 10px 10px;
+  }
+
+  .wish-message {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #openBtn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-label {
+    font-size: 12px;
+  }
+
+  .countdown-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #popup {
+    max-width: 90%;
+    font-size: 14px;
+  }
+  
+#credit {
+	font-family: 'Playfair Display', serif;
+  background-color: #e4eee5;
+  color: #293927;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.fade {
+  opacity: 0;
+  transform: scale(0.95) translateY(40px);
+  transition: all 1s ease;
+}
+.fade.appear {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+
+  
+}
